@@ -36,25 +36,37 @@ void mirror(int x) {
   for (int i = 0; i < x; i++) {
     for (int j = 1; j <= x - i; j++) {
       stdout.write("$a");
-      if (a < x) {
+      if (a < x && a != 9) {
         a++;
       } else {
         a = 1;
       }
     }
 
+    // if (a == 10) {
+    //   a = 1;
+    // }
+
     for (int j = 0; j < i * 2; j++) {
       stdout.write(" ");
     }
 
     for (int j = x; j > 0 + i; j--) {
+      if (b > 9) {
+        b = 1;
+      }
       stdout.write("$b");
       if (b > 1) {
         b--;
       } else {
-        b = 4;
+        if (x > 9) {
+          b = 9;
+        } else {
+          b = x;
+        }
       }
     }
+
     stdout.write("\n");
   }
 }

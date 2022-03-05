@@ -1,30 +1,70 @@
 import 'dart:io';
 
 void diamond(int x) {
-  int k = x - 3;
+  double k = x / 2;
+  int half2 = k.toInt(); //2
+  int half = x - half2; //3
+  int temp = 0;
+  int temp2 = half2;
+  int star1 = half; //3
+  int star2 = half2; //2
+  int a = 1;
+  int b = 0;
 
-  for (int i = 1; i < x + 1; i++) {
-    for (int j = 0; j < k; j++) {
+  print(half);
+  for (int i = 0; i < half; i++) {
+    for (int j = 1; j < star1; j++) {
       stdout.write("*");
     }
 
-    k = k - 1;
-
-    if (i <= (x + 1) / 2) {
-      for (int j = 0; j <= i - 1; j++) {
-        if (i - 1 == j) {
-          stdout.write("$i");
+    for (int j = 0; j <= i; j++) {
+      if (temp == j) {
+        stdout.write("$a");
+        temp++;
+        a++;
+        if (a == 10) {
+          a = 1;
+          b = a;
         } else {
-          stdout.write("$i ");
+          b = a;
         }
+      } else {
+        stdout.write("$a ");
       }
-    } else {
-      // for (int j =0; j)
     }
 
-    for (int j = 0; j < k; j++) {
+    for (int j = 1; j < star1; j++) {
       stdout.write("*");
     }
+
+    star1--;
+
+    stdout.write("\n");
+  }
+
+  for (int i = 0; i < half2; i++) {
+    for (int j = star2; j <= half2; j++) {
+      stdout.write("*");
+    }
+
+    for (int j = i; j < half2; j++) {
+      if (temp2 - 1 == j) {
+        stdout.write("$b");
+        temp--;
+        b++;
+        if (b == 10) {
+          b = 1;
+        }
+      } else {
+        stdout.write("$b ");
+      }
+    }
+
+    for (int j = star2; j <= half2; j++) {
+      stdout.write("*");
+    }
+
+    star2--;
 
     stdout.write("\n");
   }
@@ -42,10 +82,6 @@ void mirror(int x) {
         a = 1;
       }
     }
-
-    // if (a == 10) {
-    //   a = 1;
-    // }
 
     for (int j = 0; j < i * 2; j++) {
       stdout.write(" ");
@@ -76,6 +112,13 @@ void main(List<String> arguments) {
   String? dtInput = stdin.readLineSync();
   int x = int.parse(dtInput!);
 
-  // diamond(x);
-  mirror(x);
+  if (x % 2 == 0) {
+    x = x - 1;
+    diamond(x);
+  } else if (x < 3) {
+    stdout.write("Nilai tidak boleh lebih kecil dari 3..");
+  } else {
+    diamond(x);
+  }
+  // mirror(x);
 }

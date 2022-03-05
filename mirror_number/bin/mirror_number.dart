@@ -2,16 +2,16 @@ import 'dart:io';
 
 void diamond(int x) {
   double k = x / 2;
-  int half2 = k.toInt(); //2
-  int half = x - half2; //3
+  int half2 = k.toInt();
+  int half = x - half2;
   int temp = 0;
   int temp2 = half2;
-  int star1 = half; //3
-  int star2 = half2; //2
+  int star1 = half;
+  int star2 = half2;
   int a = 1;
   int b = 0;
 
-  print(half);
+  //upper half
   for (int i = 0; i < half; i++) {
     for (int j = 1; j < star1; j++) {
       stdout.write("*");
@@ -42,6 +42,7 @@ void diamond(int x) {
     stdout.write("\n");
   }
 
+  //lower half
   for (int i = 0; i < half2; i++) {
     for (int j = star2; j <= half2; j++) {
       stdout.write("*");
@@ -73,6 +74,7 @@ void diamond(int x) {
 void mirror(int x) {
   int a = 1;
   int b = x;
+
   for (int i = 0; i < x; i++) {
     for (int j = 1; j <= x - i; j++) {
       stdout.write("$a");
@@ -116,9 +118,9 @@ void main(List<String> arguments) {
     x = x - 1;
     diamond(x);
   } else if (x < 3) {
-    stdout.write("Nilai tidak boleh lebih kecil dari 3..");
+    stdout.write("Nilai tidak boleh lebih kecil dari 3..\n");
   } else {
     diamond(x);
   }
-  // mirror(x);
+  mirror(x);
 }

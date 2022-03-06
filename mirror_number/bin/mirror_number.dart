@@ -11,63 +11,123 @@ void diamond(int x) {
   int a = 1;
   int b = 0;
 
-  //upper half
-  for (int i = 0; i < half; i++) {
-    for (int j = 1; j < star1; j++) {
-      stdout.write("*");
-    }
+  if (x % 2 != 0) {
+    //upper half
+    for (int i = 0; i < half; i++) {
+      for (int j = 1; j < star1; j++) {
+        stdout.write("*");
+      }
 
-    for (int j = 0; j <= i; j++) {
-      if (temp == j) {
-        stdout.write("$a");
-        temp++;
-        a++;
-        if (a == 10) {
-          a = 1;
-          b = a;
+      for (int j = 0; j <= i; j++) {
+        if (temp == j) {
+          stdout.write("$a");
+          temp++;
+          a++;
+          if (a == 10) {
+            a = 1;
+            b = a;
+          } else {
+            b = a;
+          }
         } else {
-          b = a;
+          stdout.write("$a ");
         }
-      } else {
-        stdout.write("$a ");
       }
+
+      for (int j = 1; j < star1; j++) {
+        stdout.write("*");
+      }
+
+      star1--;
+
+      stdout.write("\n");
     }
 
-    for (int j = 1; j < star1; j++) {
-      stdout.write("*");
-    }
+    //lower half
+    for (int i = 0; i < half2; i++) {
+      for (int j = star2; j <= half2; j++) {
+        stdout.write("*");
+      }
 
-    star1--;
-
-    stdout.write("\n");
-  }
-
-  //lower half
-  for (int i = 0; i < half2; i++) {
-    for (int j = star2; j <= half2; j++) {
-      stdout.write("*");
-    }
-
-    for (int j = i; j < half2; j++) {
-      if (temp2 - 1 == j) {
-        stdout.write("$b");
-        temp--;
-        b++;
-        if (b == 10) {
-          b = 1;
+      for (int j = i; j < half2; j++) {
+        if (temp2 - 1 == j) {
+          stdout.write("$b");
+          temp--;
+          b++;
+          if (b == 10) {
+            b = 1;
+          }
+        } else {
+          stdout.write("$b ");
         }
-      } else {
-        stdout.write("$b ");
       }
+
+      for (int j = star2; j <= half2; j++) {
+        stdout.write("*");
+      }
+
+      star2--;
+
+      stdout.write("\n");
+    }
+  } else {
+    for (int i = 0; i < half; i++) {
+      for (int j = 1; j < star1; j++) {
+        stdout.write("*");
+      }
+
+      for (int j = 0; j <= i; j++) {
+        if (temp == j) {
+          stdout.write("$a");
+          temp++;
+          a++;
+          if (a == 10) {
+            a = 1;
+            b = a;
+          } else {
+            b = a;
+          }
+        } else {
+          stdout.write("$a ");
+        }
+      }
+
+      for (int j = 1; j < star1; j++) {
+        stdout.write("*");
+      }
+
+      star1--;
+
+      stdout.write("\n");
     }
 
-    for (int j = star2; j <= half2; j++) {
-      stdout.write("*");
+    //lower half
+    for (int i = 0; i < half2; i++) {
+      for (int j = star2; j < half2; j++) {
+        stdout.write("*");
+      }
+
+      for (int j = i; j < half2; j++) {
+        if (temp2 - 1 == j) {
+          stdout.write("$b");
+          temp--;
+          b++;
+          if (b == 10) {
+            b = 1;
+          }
+        } else {
+          stdout.write("$b ");
+        }
+      }
+
+      for (int j = star2; j < half2; j++) {
+        stdout.write("*");
+      }
+
+      star2--;
+
+      stdout.write("\n");
     }
-
-    star2--;
-
-    stdout.write("\n");
   }
 }
 
@@ -114,13 +174,6 @@ void main(List<String> arguments) {
   String? dtInput = stdin.readLineSync();
   int x = int.parse(dtInput!);
 
-  if (x % 2 == 0) {
-    x = x - 1;
-    diamond(x);
-  } else if (x < 3) {
-    stdout.write("Nilai tidak boleh lebih kecil dari 3..\n");
-  } else {
-    diamond(x);
-  }
+  diamond(x);
   mirror(x);
 }
